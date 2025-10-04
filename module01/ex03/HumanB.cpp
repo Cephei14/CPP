@@ -16,5 +16,5 @@ void HumanB::attack()
 	if(this->wB)
 		std::cout << this->_name << " attacks with their " << this->wB->getType() << std::endl;
 	else
-		std::cout << this->_name << " runaway\n";
+		std::cout << this->_name << " slaps the enemy\n";
 }
