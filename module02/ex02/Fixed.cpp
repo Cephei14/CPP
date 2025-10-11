@@ -86,7 +86,7 @@ bool Fixed::operator==(const Fixed& original) const
 
 bool Fixed::operator!=(const Fixed& original) const
 {
-	return(this->n == original.n);
+	return(this->n != original.n);
 }
 
 Fixed Fixed::operator+(const Fixed& original) const
