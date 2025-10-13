@@ -15,7 +15,7 @@ int main(int ac, char **av)
 	input.open(av[1]);
 	if(!input.is_open())
 	{
-		std::cout << "File not found\n";
+		std::cout << "Could not open file" << std::endl;
 		return 1;
 	}
 

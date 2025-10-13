@@ -39,5 +39,4 @@ void Harl::complain(std::string level)
 			return ;
 		}
 	}
-	std::cout << "No problem found !!"<< std::endl;
 }

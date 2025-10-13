@@ -15,5 +15,4 @@ public:
 	void attack();
 };
 
-
 #endif

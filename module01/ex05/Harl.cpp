@@ -39,5 +39,5 @@ void Harl::complain(std::string level)
 			return ;
 		}
 	}
-	std::cout << "No problem found !!"<< std::endl;
+	std::cout << "[ Probably complaining about insignificant problems ]"<< std::endl;
 }

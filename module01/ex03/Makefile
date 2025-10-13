@@ -13,7 +13,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CXX) $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o : %.c
+%.o : %.cpp
 	$(CXX) $(FLAGS) -c $< -o $@
 
 clean :
@@ -21,5 +21,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
+
+re : fclean all
 
 .PHONY : all clean fclean

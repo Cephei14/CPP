@@ -8,7 +8,6 @@ int main(void)
 	problem.complain("INFO");
 	problem.complain("ERROR");
 	problem.complain("WARNING");
-	problem.complain("NOTHING");
 	
 	return 0;
 }
