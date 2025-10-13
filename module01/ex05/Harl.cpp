@@ -39,5 +39,5 @@ void Harl::complain(std::string level)
 			return ;
 		}
 	}
-	std::cout << "Don't be such a CryBaby !!"<< std::endl;
+	std::cout << "No problem found !!"<< std::endl;
 }

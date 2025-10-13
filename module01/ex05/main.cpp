@@ -2,13 +2,13 @@
 
 int main(void)
 {
-	Harl karen;
+	Harl problem;
 
-	karen.complain("DEBUG");
-	karen.complain("INFO");
-	karen.complain("ERROR");
-	karen.complain("WARNING");
-	karen.complain("NOTHING");
+	problem.complain("DEBUG");
+	problem.complain("INFO");
+	problem.complain("ERROR");
+	problem.complain("WARNING");
+	problem.complain("NOTHING");
 	
 	return 0;
 }

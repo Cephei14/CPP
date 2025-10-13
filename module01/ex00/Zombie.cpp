@@ -9,7 +9,7 @@ Zombie::Zombie(std::string name)
 
 Zombie::~Zombie()
 {
-	std::cout << this->_name << ": Ate low IQ brain and died from diarrhea\n\n";		
+	std::cout << this->_name << ": Ate a low IQ brain and died\n\n";		
 }
 
 void Zombie::announce(void)

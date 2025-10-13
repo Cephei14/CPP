@@ -14,7 +14,7 @@ void Zombie::set_name(std::string name, int n)
 
 Zombie::~Zombie()
 {
-	std::cout << "\n" <<  this->_name << ": Ate low IQ brain and died from diarrhea.\n";		
+	std::cout << "\n" <<  this->_name << ": Ate a low IQ brain and died.\n";		
 }
 
 void Zombie::announce(void)

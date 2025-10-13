@@ -14,7 +14,10 @@ int main(int ac, char **av)
 	std::ifstream input;
 	input.open(av[1]);
 	if(!input.is_open())
+	{
+		std::cout << "File not found\n";
 		return 1;
+	}
 
 	std::ofstream output;
 	output.open(output_file.c_str());
