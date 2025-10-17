@@ -11,7 +11,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
-	std::cout << "ClapTrap parameterized constructor called \"" << std::endl << name << "\" has been created !" << std::endl;
+	std::cout << "ClapTrap Custom constructor called " << std::endl << "\"" << name << "\" has been created !" << std::endl;
 	this->_hit_points = 10;
 	this->_energy_points = 10;
 	this->_attack_damage = 0;
@@ -59,6 +59,7 @@ void ClapTrap::attack(const std::string& target)
 	std::cout << "\""  << this->_name << "\" Attacks \"" << target << "\", causing \"" << this->_attack_damage << "\" points of damage !" << std::endl;
 	this->_energy_points--;
 }
+
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if(this->_hit_points == 0)

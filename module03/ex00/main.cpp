@@ -1,16 +1,25 @@
 #include "ClapTrap.hpp"
 
-int main() {
-    ClapTrap clappy("Clappy");
-    ClapTrap trappy("Trappy");
+int main() 
+{
+    ClapTrap clap("Claaap");
+    ClapTrap trap("Traaap");
 
-    clappy.attack("Trappy");
-    trappy.takeDamage(1);
-    trappy.beRepaired(5);
-    trappy.attack("Clappy");
+    clap.attack("Traaap");
+    trap.takeDamage(1);
+    trap.beRepaired(5);
+    trap.attack("Claaap");
+	clap.takeDamage(0);
 
-    ClapTrap clappy_copy(clappy);
-    clappy_copy.attack("Trappy");
+    ClapTrap c_clap(trap);
+	c_clap.beRepaired(1);
+    c_clap.attack("Traaap");
+	trap.takeDamage(2);
+	trap.beRepaired(10);
+	ClapTrap t_trap;
+	t_trap = trap;
+	t_trap.attack("Traap");
+	trap.beRepaired(2);
 
     return 0;
 }
