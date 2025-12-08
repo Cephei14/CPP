@@ -77,6 +77,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "\""  << this->_name << "\" Took \"" << amount <<"\" of damage leaving it with \"" << this->_hit_points << "\" Hit points!" << std::endl;
 	}
 }
+
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if(this->_energy_points < 1)
