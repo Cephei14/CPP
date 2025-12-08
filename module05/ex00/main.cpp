@@ -2,7 +2,6 @@
 
 int main()
 {
-    // --- Test 1: Valid Bureaucrat ---
     std::cout << "--- TEST 1: Valid Bureaucrat ---" << std::endl;
     try
 	{
@@ -23,7 +22,6 @@ int main()
     }
     std::cout << std::endl;
 
-    // --- Test 2: Grade Too High in Constructor ---
     std::cout << "--- TEST 2: Grade Too High in Constructor (0) ---" << std::endl;
     try
 	{
@@ -35,7 +33,6 @@ int main()
     }
     std::cout << std::endl;
 
-    // --- Test 3: Grade Too Low in Constructor ---
     std::cout << "--- TEST 3: Grade Too Low in Constructor (151) ---" << std::endl;
     try
 	{
@@ -47,7 +44,6 @@ int main()
     }
     std::cout << std::endl;
 
-    // --- Test 4: Grade Too High during Increment ---
     std::cout << "--- TEST 4: Incrementing Grade 1 ---" << std::endl;
     try
 	{
@@ -63,7 +59,6 @@ int main()
     }
     std::cout << std::endl;
 
-    // --- Test 5: Grade Too Low during Decrement ---
     std::cout << "--- TEST 5: Decrementing Grade 150 ---" << std::endl;
     try
 	{
