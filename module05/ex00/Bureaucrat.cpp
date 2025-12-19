@@ -40,7 +40,6 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	this->_grade = grade;
 }
 
 std::string Bureaucrat::getName(void) const
