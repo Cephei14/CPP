@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-struct Data
+class Data
 {
 private:
 	std::string _name;

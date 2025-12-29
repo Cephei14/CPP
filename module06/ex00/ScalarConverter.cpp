@@ -37,22 +37,37 @@ void ScalarConverter::convert(std::string literal)
 	}
 	else
 	{
-		db = std::strtod(literal.c_str(), NULL);
+		char* endptr = NULL;
+		db = std::strtod(literal.c_str(), &endptr);
+		if (*endptr != '\0') 
+        {
+            if (*endptr == 'f' && *(endptr + 1) == '\0') 
+            {
+            }
+            else 
+            {
+                std::cout << "char: impossible" << std::endl;
+                std::cout << "int: impossible" << std::endl;
+                std::cout << "float: impossible" << std::endl;
+                std::cout << "double: impossible" << std::endl;
+                return;
+            }
+        }
 		n = static_cast<int>(db); 
 		f = static_cast<float>(db); 
 		c = static_cast<char>(db); 
 	}
-	if(std::isnan(db) || std::isinf(db) || db < 0 || db > 127)
+	if(isnan(db) || isinf(db) || db < 0 || db > 127)
 		std::cout << "char:  Impossible" << std::endl;
 	else if(!std::isprint(c))
 		std::cout << "char:  Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << c << "'" << std::endl;
-	if(std::isnan(db) || std::isinf(db) || db < INT_MIN || db > INT_MAX)
+	if(isnan(db) || isinf(db) || db < INT_MIN || db > INT_MAX)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << n << std::endl;
-	if(std::isnan(f) || std::isinf(f))
+	if(isnan(f) || isinf(f))
 		std::cout << "float: " << f << "f" << std::endl;
 	else
 	{
@@ -61,7 +76,7 @@ void ScalarConverter::convert(std::string literal)
 		else
 			std::cout << "float: " << f << "f" << std::endl;
 	}
-	if(std::isnan(db) || std::isinf(db))
+	if(isnan(db) || isinf(db))
 		std::cout << "double: " << db << std::endl;
 	else 
 	{
