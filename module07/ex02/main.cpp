@@ -54,7 +54,8 @@ int main(int, char**)
         std::cerr << "Default constructor or size() failed!" << std::endl;
     Array<int> A(5); 
     Array<int> B(5);
-    for(unsigned int i = 0; i < B.size(); i++) B[i] = 10;
+    for(unsigned int i = 0; i < B.size(); i++)
+		B[i] = 10;
     A = B;
     if (A[0] != 10) 
         std::cerr << "Assignment Operator failed!" << std::endl;
