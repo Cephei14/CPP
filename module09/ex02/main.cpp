@@ -1,29 +1,15 @@
-#include "easyfind.hpp"
+#include "PmergeMe.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-	std::vector<int> v;
-	for(int i = -5; i <= 10; i++)
-		v.push_back(i);
-	try
-	{
-		std::cout << "Searching for 5..." << std::endl;
-		std::vector<int>::iterator result = easyfind(v , 5);
-		std::cout << "Found: " << *result << std::endl;
-	}
-	catch (const char* str)
-	{
-		std::cout << str << std::endl;
-	}
-	try
-	{
-        std::cout << "Searching for 100..." << std::endl;
-		std::vector<int>::iterator result = easyfind(v, 100);
-		std::cout << "Found: " << *result << std::endl;
-    }
-    catch (const char* str)
+    if (ac < 2)
     {
-        std::cerr << str << std::endl;
+        std::cout << "Error: No arguments provided." << std::endl;
+        return 1;
     }
-	return 0;
+
+    PmergeMe sorter;
+    sorter.Start(ac, av);
+
+    return 0;
 }
