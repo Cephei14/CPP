@@ -1,7 +1,7 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#define EVAL_MODE
+//#define EVAL_MODE
 
 #include <iostream>
 #include <vector>
