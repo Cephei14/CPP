@@ -88,21 +88,21 @@ void PmergeMe::Start(int ac, char **av)
 void PmergeMe::SortVector(std::vector<ElementType>& arr)
 {
     if (arr.size() <= 1)
-		return;
-    std::vector<std::pair<ElementType, ElementType> > pairs;
+        return;
     bool hasStraggler = false;
     ElementType straggler;
     if (arr.size() % 2 != 0)
-	{
+    {
         straggler = arr.back();
         hasStraggler = true;
         arr.pop_back();
     }
+    std::vector<std::pair<ElementType, ElementType> > pairs;
     std::vector<ElementType> mainChain;
     for (size_t i = 0; i < arr.size(); i += 2)
-	{
+    {
         if (arr[i] > arr[i + 1])
-		{
+        {
             pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
             mainChain.push_back(arr[i]);
         } else {
@@ -112,123 +112,151 @@ void PmergeMe::SortVector(std::vector<ElementType>& arr)
     }
     SortVector(mainChain);
     std::vector<ElementType> pending;
+    std::vector<size_t> winnerIndices;
+	std::vector<bool> pairUsed(pairs.size(), false);
     for (size_t i = 0; i < mainChain.size(); i++)
-	{
+    {
+        winnerIndices.push_back(i); 
         for (size_t j = 0; j < pairs.size(); j++)
-		{
-            if (pairs[j].first == mainChain[i])
-			{
+        {
+            if (!pairUsed[j] && pairs[j].first == mainChain[i])
+            {
                 pending.push_back(pairs[j].second);
+				pairUsed[j] = true;
                 break;
             }
         }
     }
+    if (hasStraggler)
+    {
+        pending.push_back(straggler);
+        winnerIndices.push_back(mainChain.size()); 
+    }
     mainChain.insert(mainChain.begin(), pending[0]);
-    size_t addedCount = 1;
+
+    for (size_t k = 0; k < winnerIndices.size(); k++)
+        winnerIndices[k]++;
     std::vector<size_t> jacobsthal;
     jacobsthal.push_back(1);
     jacobsthal.push_back(3);
     for (size_t i = 2; ; i++)
-	{
+    {
         size_t nextJ = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
         jacobsthal.push_back(nextJ);
         if (nextJ >= pending.size())
-			break;
+            break;
     }
     size_t lastIndex = 0;
     for (size_t i = 1; i < jacobsthal.size(); i++)
-	{
+    {
         size_t index = jacobsthal[i] - 1;
         if (index >= pending.size())
-			index = pending.size() - 1;
+            index = pending.size() - 1;
+
         for (size_t j = index; j > lastIndex; j--)
-		{
+        {
             ElementType loser = pending[j];
-            typename std::vector<ElementType>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.begin() + j + addedCount, loser);
+            size_t limitIndex = winnerIndices[j];
+            std::vector<ElementType>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.begin() + limitIndex, loser);
+            size_t insertPosIndex = std::distance(mainChain.begin(), pos);
             mainChain.insert(pos, loser);
-            addedCount++;
+            
+            for (size_t k = 0; k < winnerIndices.size(); k++)
+            {
+                if (winnerIndices[k] >= insertPosIndex)
+                    winnerIndices[k]++;
+            }
         }
         lastIndex = index;
-    }
-    if (hasStraggler)
-	{
-        typename std::vector<ElementType>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), straggler);
-        mainChain.insert(pos, straggler);
     }
     arr = mainChain;
 }
 
+
 void PmergeMe::SortDeque(std::deque<ElementType>& arr)
 {
     if (arr.size() <= 1)
-		return;
-    std::deque<std::pair<ElementType, ElementType> > pairs;
+        return;
     bool hasStraggler = false;
     ElementType straggler;
     if (arr.size() % 2 != 0)
-	{
+    {
         straggler = arr.back();
         hasStraggler = true;
         arr.pop_back();
     }
+    std::deque<std::pair<ElementType, ElementType> > pairs;
     std::deque<ElementType> mainChain;
+
     for (size_t i = 0; i < arr.size(); i += 2)
-	{
+    {
         if (arr[i] > arr[i + 1])
-		{
+        {
             pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
             mainChain.push_back(arr[i]);
-        }
-		else
-		{
+        } else {
             pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
             mainChain.push_back(arr[i + 1]);
         }
     }
     SortDeque(mainChain);
     std::deque<ElementType> pending;
+    std::deque<size_t> winnerIndices;
+	std::deque<bool> pairUsed(pairs.size(), false);
     for (size_t i = 0; i < mainChain.size(); i++)
-	{
+    {
+        winnerIndices.push_back(i); 
         for (size_t j = 0; j < pairs.size(); j++)
-		{
-            if (pairs[j].first == mainChain[i])
-			{
+        {
+            if (!pairUsed[j] &&pairs[j].first == mainChain[i])
+            {
                 pending.push_back(pairs[j].second);
+				pairUsed[j] = true;
                 break;
             }
         }
     }
+    if (hasStraggler)
+    {
+        pending.push_back(straggler);
+        winnerIndices.push_back(mainChain.size()); 
+    }
     mainChain.insert(mainChain.begin(), pending[0]);
-    size_t addedCount = 1;
+
+    for (size_t k = 0; k < winnerIndices.size(); k++)
+        winnerIndices[k]++;
     std::deque<size_t> jacobsthal;
     jacobsthal.push_back(1);
     jacobsthal.push_back(3);
     for (size_t i = 2; ; i++)
-	{
+    {
         size_t nextJ = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
         jacobsthal.push_back(nextJ);
         if (nextJ >= pending.size())
-			break;
+            break;
     }
     size_t lastIndex = 0;
     for (size_t i = 1; i < jacobsthal.size(); i++)
-	{
+    {
         size_t index = jacobsthal[i] - 1;
         if (index >= pending.size())
-			index = pending.size() - 1;
+            index = pending.size() - 1;
+
         for (size_t j = index; j > lastIndex; j--)
-		{
+        {
             ElementType loser = pending[j];
-            typename std::deque<ElementType>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.begin() + j + addedCount, loser);
+            size_t limitIndex = winnerIndices[j];
+            std::deque<ElementType>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.begin() + limitIndex, loser);
+            size_t insertPosIndex = std::distance(mainChain.begin(), pos);
             mainChain.insert(pos, loser);
-            addedCount++;
+            
+            for (size_t k = 0; k < winnerIndices.size(); k++)
+            {
+                if (winnerIndices[k] >= insertPosIndex)
+                    winnerIndices[k]++;
+            }
         }
         lastIndex = index;
-    }
-    if (hasStraggler)
-	{
-        typename std::deque<ElementType>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), straggler);
-        mainChain.insert(pos, straggler);
     }
     arr = mainChain;
 }

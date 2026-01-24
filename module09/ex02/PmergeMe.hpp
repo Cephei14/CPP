@@ -23,6 +23,8 @@ public:
     Number(int v = 0) : value(v) {} // Default + Value constructor
 
     bool operator<(const Number& other) const { cnt++; return value < other.value; }
+    //<=
+    //>=
     bool operator>(const Number& other) const { cnt++; return value > other.value; }
     bool operator==(const Number& other) const { return value == other.value; }
     bool operator!=(const Number& other) const { return value != other.value; }

@@ -84,7 +84,7 @@ bool BitcoinExchange::isValidDate(const std::string& date)
 bool BitcoinExchange::isValidValue(const std::string& value)
 {
     char* end;
-	double dValue = std::strtod(value.c_str(), &end);
+    double dValue = std::strtod(value.c_str(), &end);
 
     if (*end != '\0' || end == value.c_str())
     {
@@ -92,15 +92,31 @@ bool BitcoinExchange::isValidValue(const std::string& value)
         return false;
     }
     if (dValue < 0)
-	{
-		std::cout << "Error: not a positive number." << std::endl;
-		return false;
-	}
-	else if (dValue > 1000)
-	{
-		std::cout << "Error: too large a number." << std::endl;
-		return false;
-	}
+    {
+        std::cout << "Error: not a positive number." << std::endl;
+        return false;
+    }
+    if (dValue > 1000.0)
+    {
+        std::cout << "Error: too large a number." << std::endl;
+        return false;
+    }
+    if (dValue == 1000.0)
+    {
+        size_t decimalPos = value.find('.');
+        if (decimalPos != std::string::npos)
+        {
+            for (size_t i = decimalPos + 1; i < value.length(); i++)
+            {
+                if (value[i] >= '1' && value[i] <= '9')
+                {
+                    std::cout << "Error: too large a number." << std::endl;
+                    return false;
+                }
+            }
+        }
+    }
+
     return true;
 }
 

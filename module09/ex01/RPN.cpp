@@ -74,8 +74,8 @@ void RPN::Calculate(const std::string& expression)
 {
 	if (!IsValid(expression))
 		return;
-	std::stack<int> data;
-	int tmp;
+	std::stack<double> data;
+	double tmp;
 	for (size_t i = 0; i < expression.length(); i++)
 	{
 		if(isdigit(expression[i]))
